@@ -2,6 +2,9 @@
 
 ## 下載Jable好幫手
 
+每次看正要爽的時候就給我卡住轉圈圈 
+乾脆直接下載到電腦 讚
+
 ### 輸入
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
