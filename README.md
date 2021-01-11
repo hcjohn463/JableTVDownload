@@ -6,13 +6,13 @@
 
 直接下載到電腦看沒煩惱
 
-### 輸入
+### 輸入網址
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
-### 下載完成
+### 等待下載
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
-### 輸出
+### 完成
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
