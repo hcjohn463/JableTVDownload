@@ -1,4 +1,3 @@
-from tqdm import tqdm
 import time
 import os
 def mergeMp4(folderPath,tsList):
