@@ -6,7 +6,6 @@
 
 直接下載到電腦看沒煩惱
 
-#### Import
 pip install pycryptodome
 
 ### 輸入網址
