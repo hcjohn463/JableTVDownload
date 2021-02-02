@@ -6,6 +6,9 @@
 
 直接下載到電腦看沒煩惱
 
+# Import
+pip install pycryptodome
+
 ### 輸入網址
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
@@ -16,5 +19,3 @@
 ### 完成
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
-
-### 如果有Crypto問題 請在python/lib/site-packages/crypto 改成大寫 'C'rypto 並重新開啟
