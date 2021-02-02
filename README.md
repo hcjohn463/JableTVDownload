@@ -6,8 +6,6 @@
 
 直接下載到電腦看沒煩惱
 
-pip install pycryptodome
-
 ### 輸入網址
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
@@ -18,3 +16,7 @@ pip install pycryptodome
 ### 完成
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
+
+### Crypto問題
+
+pip install pycryptodome==3.4.3
