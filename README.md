@@ -19,7 +19,3 @@ pip install -r requirements.txt
 ### 完成
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
-
-### Crypto問題
-
-pip install pycryptodome==3.4.3
