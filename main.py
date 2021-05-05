@@ -11,7 +11,7 @@ import urllib.request
 import m3u8
 from Crypto.Cipher import AES
 from config import headers
-from crawler import startCrawl
+from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8,deleteMp4
 
@@ -93,17 +93,18 @@ else:
     ci = ''
 
 
+
 # In[7]:
-
-
-#開始爬蟲並下載mp4片段至資料夾
-startCrawl(ci,folderPath,tsList)
-
-
-# In[8]:
 
 #刪除m3u8 file
 deleteM3u8(folderPath)
+
+# In[8]:
+
+
+#開始爬蟲並下載mp4片段至資料夾
+prepareCrawl(ci,folderPath,tsList)
+
 
 
 # In[9]:
@@ -116,4 +117,3 @@ mergeMp4(folderPath,tsList)
 
 #刪除不用的mp4
 deleteMp4(folderPath)
-
