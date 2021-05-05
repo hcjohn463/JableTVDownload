@@ -9,7 +9,7 @@
 直接下載到電腦看沒煩惱
 
 ### requirements
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ### 輸入網址
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
