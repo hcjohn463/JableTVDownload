@@ -14,12 +14,10 @@
 ### 輸入網址(Input url)
 `https://jable.tv/videos/ipx-486/`
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
 ### 等待下載(Wait download)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
 ### 完成(Finish)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
+
