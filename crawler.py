@@ -16,7 +16,7 @@ def scrape(ci,folderPath,downloadList,urls):
         else:
             f.write(content_ts)
         #輸出進度
-        print('已下載: {0} , 剩餘 {1} 個'.format(urls.split('/')[-1],len(downloadList)))
+        print('當前下載: {0} , 剩餘 {1} 個'.format(urls.split('/')[-1],len(downloadList)))
 		
         downloadList.remove(urls)
         f.close()
