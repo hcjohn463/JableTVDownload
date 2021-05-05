@@ -1,3 +1,4 @@
+# author: hcjohn463
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -96,8 +97,10 @@ else:
 
 # In[7]:
 
+
 #刪除m3u8 file
 deleteM3u8(folderPath)
+
 
 # In[8]:
 
@@ -106,14 +109,16 @@ deleteM3u8(folderPath)
 prepareCrawl(ci,folderPath,tsList)
 
 
-
 # In[9]:
+
 
 #合成mp4
 mergeMp4(folderPath,tsList)
 
 
-# In[11]:
+# In[10]:
+
 
 #刪除不用的mp4
 deleteMp4(folderPath)
+
