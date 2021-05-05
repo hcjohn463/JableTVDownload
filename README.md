@@ -12,12 +12,12 @@
 `pip install -r requirements.txt`
 
 ### 輸入網址(Input url)
-`https://jable.tv/videos/ipx-486/`
+`https://jable.tv/videos/ipx-486/`  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/1.PNG)
 
-### 等待下載(Wait download)
+### 等待下載(Wait download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/2.PNG)
 
-### 完成(Finish)
+### 完成(Finish)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
