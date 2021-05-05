@@ -16,7 +16,7 @@
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
-### 等待下載(Wait downloading)
+### 等待下載(Wait download)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
