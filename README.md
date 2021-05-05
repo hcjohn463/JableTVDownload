@@ -8,7 +8,7 @@
 
 直接下載到電腦看沒煩惱
 
-### requirements
+### requirements (Python version : 3.6)
 `pip install -r requirements.txt`
 
 ### 輸入網址(Input url)
