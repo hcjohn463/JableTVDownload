@@ -35,7 +35,7 @@ def prepareCrawl(ci,folderPath,tsList):
     print('花費 {0:.2f} 分鐘 爬取完成 !'.format((end_time - start_time) / 60))
 
 def startCrawl(ci,folderPath,downloadList):
-    #同時建立及啟用 20個執行緒
+    #同時建立及啟用 30 個執行緒
     while(downloadList != []):
-        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
             executor.map(partial(scrape,ci,folderPath,downloadList), downloadList)
