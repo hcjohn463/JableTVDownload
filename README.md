@@ -11,13 +11,13 @@
 ### requirements
 `pip install -r requirements.txt`
 
-### 輸入網址
+### 輸入網址(Input url)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
-### 等待下載
+### 等待下載(Wait downloading)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
-### 完成
+### 完成(Finish)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
