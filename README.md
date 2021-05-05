@@ -1,3 +1,5 @@
+2021/5/5 更新 v1.2
+
 # JableTVDownload
 
 ## 下載JableTV好幫手
