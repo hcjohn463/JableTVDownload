@@ -16,4 +16,5 @@ def mergeMp4(folderPath,tsList):
 			print(file + " 失敗 ")
 
 	end_time = time.time()
-	print(f"花費 {end_time - start_time} 秒合成影片")
+	print('花費 {0:.2f} 秒合成影片'.format(end_time - start_time))
+	print('下載完成!')
