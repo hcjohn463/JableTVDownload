@@ -23,4 +23,4 @@
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)  
 
-預設使用Nvidia顯示卡加速編碼，若無則未經過編碼優化，會有移動時間軸卡幀情況發生
+預設使用Nvidia NVDEC加速編碼，若無則未經過編碼優化，會有移動時間軸卡幀情況發生
