@@ -20,6 +20,6 @@
 ### 等待下載(Wait download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
 
-### 完成(Finish)  
+### 完成(Finish)  預設使用Nvidia加速編碼
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
