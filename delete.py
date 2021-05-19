@@ -1,10 +1,13 @@
 import os
-def deleteMp4(folderPath):
+def deleteMp4(folderPath,flag):
 	files = os.listdir(folderPath)
-	needFile = folderPath.split('/')[-1] + '.mp4'
-	for file in files:
-		if file != needFile:
-			os.remove(os.path.join(folderPath, file))
+	originFile = 'o' + folderPath.split('/')[-1] + '.mp4'
+	if flag:
+		for file in files:
+			if file != originFile:
+				os.remove(os.path.join(folderPath, file))
+	else:
+		os.remove(os.path.join(folderPath, originFile))
 def deleteM3u8(folderPath):
 	files = os.listdir(folderPath)
 	for file in files:
