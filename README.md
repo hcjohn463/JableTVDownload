@@ -20,6 +20,7 @@
 ### 等待下載(Wait download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
 
-### 完成(Finish)  預設使用Nvidia加速編碼
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
+### 完成(Finish)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)  
 
+預設使用Nvidia顯示卡加速編碼，若無則未經過編碼優化，會有移動時間軸卡幀情況發生
