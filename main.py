@@ -15,6 +15,7 @@ from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8,deleteMp4
+from encode import encodeMp4
 
 
 # In[2]:
@@ -119,6 +120,19 @@ mergeMp4(folderPath,tsList)
 # In[10]:
 
 
-#刪除不用的mp4
-deleteMp4(folderPath)
+#刪除子mp4
+deleteMp4(folderPath,1)
 
+
+# In[11]:
+
+
+#使用ffmpeg優化mp4
+encodeMp4(folderPath)
+
+
+# In[12]:
+
+
+#刪除不用的mp4
+deleteMp4(folderPath,0)
