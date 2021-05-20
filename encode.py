@@ -7,24 +7,17 @@ def encodeMp4(folderPath):
 
     originFile = folderPath + '/o' + folderPath.split('/')[-1] + '.mp4'
     needFile = folderPath + '/' + folderPath.split('/')[-1] + '.mp4'
-    input_args = {
-        "hwaccel": "nvdec",
-        "vcodec": "h264_cuvid",
-        "c:v": "h264_cuvid"
-    }
-
+    
     output_args = {
-        "vcodec": "hevc_nvenc",
-        "c:v": "hevc_nvenc",
-        "preset": "fast",
-        "crf": 0,
-        "b:v": "20M",
-        "acodec": "copy"
+        "c:v" : "libx264",
+        "threads" : 5,
+        "preset": "ultrafast",
+        "strict": -2,
     }
 
     (
         ffmpeg
-        .input(originFile, **input_args)
+        .input(originFile)
         .output(needFile, **output_args)
         .run()
     )
