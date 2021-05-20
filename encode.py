@@ -10,9 +10,9 @@ def encodeMp4(folderPath):
     
     output_args = {
         "c:v" : "libx264",
+        "b:v" : "2M",
         "threads" : 5,
-        "preset": "ultrafast",
-        "strict": -2,
+        "preset": "superfast",
     }
 
     (
