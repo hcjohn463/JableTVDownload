@@ -12,6 +12,8 @@
 ### requirements
 `pip install -r requirements.txt`
 
+安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
+
 ### 輸入網址(Input url)
 `https://jable.tv/videos/ipx-486/`    
   
@@ -22,3 +24,6 @@
 
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)  
+
+
+[FFmpeg]:<https://www.ffmpeg.org/>
