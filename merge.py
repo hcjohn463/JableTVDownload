@@ -1,5 +1,6 @@
 import time
 import os
+
 def mergeMp4(folderPath,tsList):
 	for i in range(len(tsList)):
 		file = tsList[i].split('/')[-1][0:-3] + '.mp4'
