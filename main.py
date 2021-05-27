@@ -42,15 +42,15 @@ folderPath = dir + '/' + dirName
 
 #得到 m3u8 網址
 htmlfile = requests.get(url)
-soup = BeautifulSoup(htmlfile.text,'lxml')
-hrefList = []
-for link in soup.find_all('link'):
-    hrefList.append(link.get('href'))
-m3u8url = hrefList[-1]
+soup = BeautifulSoup(htmlfile.text, 'lxml')
+needScript = str(soup.find_all('script')[7])
+m3u8url = needScript.split('var hlsUrl = ')[1].split(';')[0]
+m3u8url = m3u8url[1:][:-1]
 
 m3u8urlList = m3u8url.split('/')
 m3u8urlList.pop(-1)
 downloadurl = '/'.join(m3u8urlList)
+
 
 #儲存 m3u8 file 至資料夾
 m3u8file = folderPath + '/' + dirName + '.m3u8'
