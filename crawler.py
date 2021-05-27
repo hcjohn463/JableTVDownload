@@ -8,9 +8,6 @@ import copy
 
 
 def scrape(ci, folderPath, downloadList, urls):
-    response = requests.get(urls, headers=headers, timeout=10)
-    content_ts = response.content
-
     os.path.split(urls)
     fileName = urls.split('/')[-1][0:-3]
     saveName = os.path.join(folderPath, fileName + ".mp4")
@@ -19,11 +16,12 @@ def scrape(ci, folderPath, downloadList, urls):
         print('當前目標: {0} 已下載, 故跳過...剩餘 {1} 個'.format(
             urls.split('/')[-1], len(downloadList)))
     else:
+        response = requests.get(urls, headers=headers, timeout=10)
+        content_ts = response.content
+        if ci:
+            content_ts = ci.decrypt(content_ts)  # 解碼
         with open(saveName, 'ab') as f:
-            if ci:
-                f.write(ci.decrypt(content_ts))  # 解碼
-            else:
-                f.write(content_ts)
+            f.write(content_ts)
             # 輸出進度
             print('當前下載: {0} , 剩餘 {1} 個'.format(
                 urls.split('/')[-1], len(downloadList)))

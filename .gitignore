@@ -1,2 +1,3 @@
-*pyc
+*.pyc
 *.mp4
+*.DS_store
