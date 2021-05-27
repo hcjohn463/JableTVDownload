@@ -29,7 +29,7 @@ url = input('輸入jable網址:')
 
 
 # 建立番號資料夾
-urlSplit = url.split(os.path.sep)
+urlSplit = url.split('/')
 dirName = urlSplit[-2]
 if not os.path.exists(dirName):
     os.makedirs(dirName)

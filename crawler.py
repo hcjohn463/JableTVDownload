@@ -12,7 +12,7 @@ def scrape(ci, folderPath, downloadList, urls):
     content_ts = response.content
 
     os.path.split(urls)
-    fileName = urls.split(os.path.sep)[-1][0:-3]
+    fileName = urls.split('/')[-1][0:-3]
     saveName = os.path.join(folderPath, fileName + ".mp4")
     if os.path.exists(saveName):
         # 跳過已下載
