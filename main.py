@@ -17,13 +17,11 @@ from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
 from encode import encodeMp4
 
-
 # In[2]:
 
 
 # Jable網址
 url = input('輸入jable網址:')
-
 
 # In[3]:
 
@@ -105,32 +103,18 @@ deleteM3u8(folderPath)
 
 
 # 開始爬蟲並下載mp4片段至資料夾
-prepareCrawl(ci, folderPath, tsList)
+prepareCrawl(ci, folderPath, tsList[:10])
 
 
 # In[9]:
 
 
 # 合成mp4
-mergeMp4(folderPath, tsList)
+mergeMp4(folderPath, tsList[:10])
 
 
 # In[10]:
 
 
 # 刪除子mp4
-deleteMp4(folderPath, 1)
-
-
-# In[11]:
-
-
-# 使用ffmpeg優化mp4
-encodeMp4(folderPath)
-
-
-# In[12]:
-
-
-# 刪除不用的mp4
-deleteMp4(folderPath, 0)
+deleteMp4(folderPath)
