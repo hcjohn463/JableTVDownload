@@ -23,8 +23,8 @@ def scrape(ci, folderPath, downloadList, urls):
         with open(saveName, 'ab') as f:
             f.write(content_ts)
             # 輸出進度
-            print('當前下載: {0} , 剩餘 {1} 個'.format(
-                urls.split('/')[-1], len(downloadList)))
+            print('\r當前下載: {0} , 剩餘 {1} 個'.format(
+                urls.split('/')[-1], len(downloadList)), end='', flush=True)
 
     downloadList.remove(urls)
 
@@ -40,7 +40,7 @@ def prepareCrawl(ci, folderPath, tsList):
     startCrawl(ci, folderPath, downloadList)
 
     end_time = time.time()
-    print('花費 {0:.2f} 分鐘 爬取完成 !'.format((end_time - start_time) / 60))
+    print('\n花費 {0:.2f} 分鐘 爬取完成 !'.format((end_time - start_time) / 60))
 
 
 def startCrawl(ci, folderPath, downloadList):
