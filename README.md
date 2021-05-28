@@ -26,10 +26,10 @@
 `cd ipx-486`  
 `ffmpeg -i ipx-486.mp4 -c:v libx264 -b:v 3M -threads 5 -preset superfast f_ipx-486.mp4`  
   
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffm.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffmpeg.PNG)
 
 ### 轉檔完成(Finish encode)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/diff.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/different.PNG)
 
 [FFmpeg]:<https://www.ffmpeg.org/>  
 
