@@ -20,12 +20,23 @@
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
 
 ### 完成(Finish)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)  
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
+### 使用FFmpeg轉檔優化 : 選擇性使用 參數能自己調(Use FFmpeg encode : optional)  
+`cd ipx-486'  
+`ffmpeg -i ipx-486.mp4 -c:v libx264 -b:v 3M -threads 5 -preset superfast f_ipx-486.mp4`  
+  
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffm.PNG)
+
+### 轉檔完成(Finish encode)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/diff.PNG)
 
 [FFmpeg]:<https://www.ffmpeg.org/>  
 
 
+### 更新日誌(Update log)
+
+ 🌏 2021/5/28 更新代碼讓Unix系統(Mac,linux等)能使用 v1.6  
  🍎 2021/5/27 更新爬蟲網頁方法 v1.5  
  🌳 2021/5/20 修改編碼問題 v1.4  
  🌈 2021/5/6 增加下載進度提示、修改Crypto問題 v1.3  
