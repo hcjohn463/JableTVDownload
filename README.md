@@ -23,7 +23,7 @@
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
 ### 使用FFmpeg轉檔優化 : 選擇性使用 參數能自己調(Use FFmpeg encode : optional)  
-`cd ipx-486'  
+`cd ipx-486`  
 `ffmpeg -i ipx-486.mp4 -c:v libx264 -b:v 3M -threads 5 -preset superfast f_ipx-486.mp4`  
   
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffm.PNG)
