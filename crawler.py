@@ -40,7 +40,7 @@ def prepareCrawl(ci, folderPath, tsList):
     startCrawl(ci, folderPath, downloadList)
 
     end_time = time.time()
-    print('花費 {0:.2f} 分鐘 爬取完成 !'.format((end_time - start_time) / 60))
+    print('\n花費 {0:.2f} 分鐘 爬取完成 !'.format((end_time - start_time) / 60))
 
 
 def startCrawl(ci, folderPath, downloadList):
