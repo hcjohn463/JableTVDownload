@@ -17,12 +17,14 @@
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
 
 ### 等待下載(Wait download)  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
 
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
-### 使用FFmpeg轉檔優化 : 選擇性使用 參數能自己調(Use FFmpeg encode : optional)  
+## #####選擇性使用(Optional use)#####
+
+### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
 `cd ipx-486`  
 `ffmpeg -i ipx-486.mp4 -c:v libx264 -b:v 3M -threads 5 -preset superfast f_ipx-486.mp4`  
   
