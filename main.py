@@ -103,14 +103,14 @@ deleteM3u8(folderPath)
 
 
 # 開始爬蟲並下載mp4片段至資料夾
-prepareCrawl(ci, folderPath, tsList[:10])
+prepareCrawl(ci, folderPath, tsList)
 
 
 # In[9]:
 
 
 # 合成mp4
-mergeMp4(folderPath, tsList[:10])
+mergeMp4(folderPath, tsList)
 
 
 # In[10]:
