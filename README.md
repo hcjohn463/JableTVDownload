@@ -11,7 +11,7 @@
 
 安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
-### 在網頁頁面按F12搜尋m3u8，複製網址(Get m3u8 url)
+### 在影片頁面按F12搜尋m3u8 複製m3u8網址(Get m3u8 url)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/m3u8.PNG)
 
 ### 輸入影片網址(Input video url)
