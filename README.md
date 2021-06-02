@@ -11,13 +11,17 @@
 
 安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
-### 輸入網址(Input url)
+### 在網頁頁面按F12搜尋m3u8，複製網址(Get m3u8 url)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/m3u8.PNG)
+
+### 輸入影片網址(Input video url)
 `https://jable.tv/videos/ipx-486/`    
   
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)
+### 輸入m3u8網址(Input m3u8 url)  
+`https://ajxc3s.alonestreaming.com/hls/emCMR7VeXqlN8zcBlW1nxw/1622642089/7000/7898/7898.m3u8`
 
 ### 等待下載(Wait download)  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/edit.PNG)
 
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
