@@ -18,7 +18,7 @@
 `https://jable.tv/videos/ipx-486/`    
 
 ### 等待下載(Wait download)  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/output.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
 
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
