@@ -16,6 +16,7 @@
 
 ### 輸入影片網址(Input video url)
 `https://jable.tv/videos/ipx-486/`    
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)  
 
 ### 等待下載(Wait download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
