@@ -7,6 +7,7 @@
 
 import requests
 import os
+import re
 from bs4 import BeautifulSoup
 import urllib.request
 import m3u8
@@ -43,7 +44,9 @@ folderPath = os.path.join(os.getcwd(), dirName)
 # m3u8url = needScript.split('var hlsUrl = ')[1].split(';')[0]
 # m3u8url = m3u8url[1:][:-1]
 
-m3u8url = input('輸入m3u8網址:')
+htmlfile = requests.get(url)
+result = re.search("var hlsUrl = '(.[^']+)'", htmlfile.text)
+m3u8url = result.groups()[0]
 
 m3u8urlList = m3u8url.split('/')
 m3u8urlList.pop(-1)
