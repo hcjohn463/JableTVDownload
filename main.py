@@ -48,7 +48,7 @@ folderPath = os.path.join(os.getcwd(), dirName)
 htmlfile = requests.get(url)
 
 # 下载封面
-downloadCover(htmlfile,folderPath,dirName)
+downloadCover(htmlfile,folderPath)
 
 result = re.search("https://.+m3u8", htmlfile.text)
 m3u8url = result[0]
