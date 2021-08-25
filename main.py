@@ -8,7 +8,6 @@
 import requests
 import os
 import re
-from bs4 import BeautifulSoup
 import urllib.request
 import m3u8
 from Crypto.Cipher import AES
@@ -16,6 +15,7 @@ from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
+import time, cloudscraper
 
 # In[2]:
 
@@ -38,7 +38,7 @@ folderPath = os.path.join(os.getcwd(), dirName)
 
 
 # 得到 m3u8 網址
-htmlfile = requests.get(url = url,headers = headers)
+htmlfile = cloudscraper.create_scraper().get(url)
 result = re.search("https://.+m3u8", htmlfile.text)
 m3u8url = result[0]
 
