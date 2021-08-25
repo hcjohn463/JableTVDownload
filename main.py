@@ -12,7 +12,6 @@ from bs4 import BeautifulSoup
 import urllib.request
 import m3u8
 from Crypto.Cipher import AES
-from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
@@ -105,14 +104,14 @@ deleteM3u8(folderPath)
 
 
 # 開始爬蟲並下載mp4片段至資料夾
-prepareCrawl(ci, folderPath, tsList[:10])
+prepareCrawl(ci, folderPath, tsList)
 
 
 # In[9]:
 
 
 # 合成mp4
-mergeMp4(folderPath, tsList[:10])
+mergeMp4(folderPath, tsList)
 
 
 # In[10]:
