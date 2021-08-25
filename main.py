@@ -38,13 +38,7 @@ folderPath = os.path.join(os.getcwd(), dirName)
 
 
 # 得到 m3u8 網址
-# htmlfile = requests.get(url)
-# soup = BeautifulSoup(htmlfile.text, 'lxml')
-# needScript = str(soup.find_all('script')[7])
-# m3u8url = needScript.split('var hlsUrl = ')[1].split(';')[0]
-# m3u8url = m3u8url[1:][:-1]
-
-htmlfile = requests.get(url)
+htmlfile = requests.get(url,headers= headers)
 result = re.search("https://.+m3u8", htmlfile.text)
 m3u8url = result[0]
 
