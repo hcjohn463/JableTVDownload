@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import m3u8
 from Crypto.Cipher import AES
+from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
