@@ -16,7 +16,6 @@ from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
-from fake_useragent import UserAgent
 
 # In[2]:
 
@@ -39,13 +38,10 @@ folderPath = os.path.join(os.getcwd(), dirName)
 
 
 # 得到 m3u8 網址
-while(1):
-    ua = UserAgent()
-    htmlfile = requests.get(url,headers = {'user-agent': ua.random,'referer': 'http://www.asqql.com/'})
-    result = re.search("https://.+m3u8", htmlfile.text)
-    if result:
-        m3u8url = result[0]
-        break
+htmlfile = requests.get(url = url,headers = headers)
+result = re.search("https://.+m3u8", htmlfile.text)
+m3u8url = result[0]
+
 m3u8urlList = m3u8url.split('/')
 m3u8urlList.pop(-1)
 downloadurl = '/'.join(m3u8urlList)
