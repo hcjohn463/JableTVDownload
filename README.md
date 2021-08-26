@@ -37,6 +37,20 @@
 
 [FFmpeg]:<https://www.ffmpeg.org/>  
 
+### Argument parser
+`$python main.py -h`
+
+![](https://i.imgur.com/qgyS5sf.png)
+
+`$python main.py --random True`
+
+可以直接下載隨機熱門影片
+
+![](https://i.imgur.com/dSsdB7Y.png)
+
+可以直接在cmd line指定url。
+
+![](https://i.imgur.com/DKFrD7T.png)
 
 ### 更新日誌(Update log)
 
