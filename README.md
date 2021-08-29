@@ -30,6 +30,8 @@ source jable/bin/activate. # MacOS
 ### 完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
 
+如果覺得好用 再麻煩給個星星好評 謝謝!!
+
 ## #####選擇性使用(Optional use)#####
 
 ### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
