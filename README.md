@@ -1,4 +1,4 @@
-# JableTVDownload 把星星搞沒了 :(
+# JableTVDownload
 
 ## 下載JableTV好幫手
 
