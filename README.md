@@ -6,6 +6,12 @@
 
 直接下載到電腦看沒煩惱
 
+### vitual env
+```
+python3 -m venv jable
+source jable/bin/activate. # MacOS
+```
+
 ### requirements
 `pip install -r requirements.txt`
 
