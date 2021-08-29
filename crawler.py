@@ -15,18 +15,19 @@ def scrape(ci, folderPath, downloadList, urls):
         # 跳過已下載
         print('當前目標: {0} 已下載, 故跳過...剩餘 {1} 個'.format(
             urls.split('/')[-1], len(downloadList)))
+        downloadList.remove(urls)
     else:
         response = requests.get(urls, headers=headers, timeout=10)
-        content_ts = response.content
-        if ci:
-            content_ts = ci.decrypt(content_ts)  # 解碼
-        with open(saveName, 'ab') as f:
-            f.write(content_ts)
-            # 輸出進度
-            print('\r當前下載: {0} , 剩餘 {1} 個'.format(
-                urls.split('/')[-1], len(downloadList)), end='', flush=True)
-
-    downloadList.remove(urls)
+        if response.status_code == 200:
+            content_ts = response.content
+            if ci:
+                content_ts = ci.decrypt(content_ts)  # 解碼
+            with open(saveName, 'ab') as f:
+                f.write(content_ts)
+                # 輸出進度
+            downloadList.remove(urls)
+        print('\r當前下載: {0} , 剩餘 {1} 個, status code: {2}'.format(
+            urls.split('/')[-1], len(downloadList), response.status_code), end='', flush=True)
 
 
 def prepareCrawl(ci, folderPath, tsList):
@@ -45,7 +46,10 @@ def prepareCrawl(ci, folderPath, tsList):
 
 def startCrawl(ci, folderPath, downloadList):
     # 同時建立及啟用 20 個執行緒
+    round = 0
     while(downloadList != []):
-        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
             executor.map(partial(scrape, ci, folderPath,
                                  downloadList), downloadList)
+        round += 1
+        print(f', round {round}')
