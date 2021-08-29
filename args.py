@@ -1,8 +1,9 @@
 import argparse
-import requests
 from bs4 import BeautifulSoup
-import cloudscraper
 import random
+from urllib.request import Request, urlopen
+from config import headers
+import re
 
 
 def get_parser():
@@ -16,23 +17,14 @@ def get_parser():
 
 
 def av_recommand():
+    headers = {'User-Agent': 'Mozilla/5.0'}
     url = 'https://jable.tv/'
-    r = requests.get(url)
-    # 這邊用 cloudscraper 取代 requests，這套件幫我們
-    new_response = cloudscraper.create_scraper().get(url)
+    request = Request(url, headers=headers)
+    web_content = urlopen(request).read()
     # 得到繞過轉址後的 html
-    soup = BeautifulSoup(new_response.text, 'html.parser')
-    # print(soup.prettify())
+    soup = BeautifulSoup(web_content, 'html.parser')
     h6_tags = soup.find_all('h6', class_='title')
-    # print(h6_tags)
-    av_list = []
-    for tag in h6_tags:
-        # print(tag)
-        # print(tag.text.split(' ')[0][0])
-        if((tag.text.split(' ')[0][0] >= 'a' and tag.text.split(' ')[0][0] <= 'z') or (tag.text.split(' ')[0][0] >= 'A' and tag.text.split(' ')[0][0] <= 'Z')):
-            # print(tag.a.get('href'))
-            av_list.append(tag.a.get('href'))
-    # print(av_list)
+    av_list = re.findall(r'https[^"]+', str(h6_tags))
     return random.choice(av_list)
 
 
