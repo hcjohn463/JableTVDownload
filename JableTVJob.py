@@ -56,8 +56,8 @@ class JableTVJob:
             if htmlfile.status_code == 200:
                 result = re.search('og:title".+/>', htmlfile.text)
                 self._targetName = result[0].split('"')[-2]
-                result = re.search("https://assetscdn.jable.tv.+.jpg", htmlfile.text)
-                self._imageUrl = result[0]
+                result = re.search('og:image".+jpg"', htmlfile.text)
+                self._imageUrl = result[0].split('"')[-2]
                 result = re.search("https://.+m3u8", htmlfile.text)
                 self._m3u8url = result[0]
                 self._dirName = url_short
