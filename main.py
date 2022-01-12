@@ -15,6 +15,7 @@ from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
+from cover import get_cover
 import time
 import cloudscraper
 from args import *
@@ -122,3 +123,7 @@ mergeMp4(folderPath, tsList)
 
 # 刪除子mp4
 deleteMp4(folderPath)
+
+# In[11]:
+# get cover
+get_cover(html_file=htmlfile, folder_path=folderPath)
