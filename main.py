@@ -130,5 +130,5 @@ deleteMp4(folderPath)
 # get cover
 get_cover(html_file=htmlfile, folder_path=folderPath)
 
-
+# Will auto start transfer if <rootPath> include ffmpeg file
 subprocess.call(['sh', './transfer.sh', os.path.basename(folderPath)])
