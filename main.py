@@ -19,6 +19,8 @@ from cover import get_cover
 import time
 import cloudscraper
 from args import *
+import subprocess
+
 # In[2]:
 
 parser = get_parser()
@@ -127,3 +129,6 @@ deleteMp4(folderPath)
 # In[11]:
 # get cover
 get_cover(html_file=htmlfile, folder_path=folderPath)
+
+
+subprocess.call(['sh', './transfer.sh', os.path.basename(folderPath)])
