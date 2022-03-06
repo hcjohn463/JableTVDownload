@@ -1,9 +1,13 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 import os
 import csv
 from JableTVJob import JableTVJob
+
 
 class RedirectConsole(tk.Listbox):
     def __init__(self, master, *args, **kwargs):
@@ -48,6 +52,8 @@ class RedirectConsole(tk.Listbox):
 
 class ScrollTreeView(ttk.Treeview):
     """ ttk.Treeview with a vertical scroll bar """
+    _download_state_ = {'': 100, '已下載': 0, '下載中': 1, '等待中': 2, '已取消': 3, '未完成': 4, '網址錯誤': 99}
+
     def __init__(self, master, **kwargs):
         _frame = tk.Frame(master)
         super().__init__(_frame, **kwargs)
@@ -90,7 +96,10 @@ class MyDownloadListView(ScrollTreeView):
 
     def _sort_column(self, col, reverse: bool):
         l = [(self.set(k, col), k) for k in self.get_children('')]
-        l = sorted(l, key=lambda s: s[0].lower(), reverse=reverse)
+        if col == '狀態':
+            l = sorted(l, key=lambda s: ScrollTreeView._download_state_.__getitem__(s[0]), reverse=reverse)
+        else:
+            l = sorted(l, key=lambda s: s[0].lower(), reverse=reverse)
         for index, (val, k) in enumerate(l):
             self.move(k, '', index)
         self.heading(col, command=lambda:self._sort_column(col, not reverse))

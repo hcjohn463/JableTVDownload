@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import platform
 import requests
 import os
@@ -47,11 +50,27 @@ class JableTVJob:
         self._t_executor = None
         self._t_future = None
         self._t2_executor = None
+        self._dirName = None
         self._cancel_job = None
+        self._dest_folder = None
+        self._temp_folder = None
+        self._targetName = None
+        self._imageUrl = None
+        self._m3u8url = None
+        self.get_url_infos(url, savepath)
+
+    def get_url_infos(self, url, savepath=""):
         brs = {'browser': 'firefox', 'platform': platform.system().lower()}
         try:
             url_short = self._validate_urls(url)
-            if not url_short: raise Exception(f"Bad url names: {url}")
+            if not url_short:
+                raise Exception(f"Bad url names: {url}")
+            self._dirName = url_short
+            self._temp_folder = os.path.join(os.getcwd(), self._dirName)
+            if (savepath is None) or (savepath == ''):
+                self._dest_folder = self._temp_folder
+            else:
+                self._dest_folder = os.path.join(os.getcwd(), savepath)
             htmlfile = cloudscraper.create_scraper(browser=brs, delay=10).get(f"https://jable.tv/videos/{url_short}/")
             if htmlfile.status_code == 200:
                 result = re.search('og:title".+/>', htmlfile.text)
@@ -60,18 +79,11 @@ class JableTVJob:
                 self._imageUrl = result[0].split('"')[-2]
                 result = re.search("https://.+m3u8", htmlfile.text)
                 self._m3u8url = result[0]
-                self._dirName = url_short
-                self._temp_folder = os.path.join(os.getcwd(), self._dirName)
-                if (savepath is None) or (savepath == ''):
-                    self._dest_folder = self._temp_folder
-                else:
-                    self._dest_folder = os.path.join(os.getcwd(), savepath)
                 print("檔案名稱: " + self._targetName, flush=True)
                 print("儲存位置: " + self._dest_folder, flush=True)
                 print("檔案縮圖: " + self._imageUrl, flush=True)
             else:
-                self._targetName = self._imageUrl = self._m3u8url = None
-                print(f"下載網址 {url} 錯誤!!", flush=True)
+                raise Exception(f"Bad url names: {url}")
         except Exception:
             self._targetName = self._imageUrl = self._m3u8url = None
             print(f"下載網址 {url} 錯誤!!", flush=True)
@@ -89,6 +101,7 @@ class JableTVJob:
     def _get_video_savename(self): return os.path.join(self._dest_folder, self._targetName + ".mp4")
     def _get_image_savename(self): return os.path.join(self._dest_folder, self._targetName + ".jpg")
     def get_url_short(self): return self._dirName
+    def get_url_full(self):  return f"https://jable.tv/videos/{self._dirName}/"
     def is_target_image_exist(self): return os.path.exists (self._get_image_savename())
     def is_target_video_exist(self): return os.path.exists (self._get_video_savename())
 
@@ -273,3 +286,17 @@ class JableTVJob:
         if self._t_executor:
             self._t_executor.shutdown()
             self._t_executor = None
+
+
+def consoles_main(urls, dest=None):
+    # 使用者輸入Jable網址
+    if not urls or urls == '' :
+        urls = input('輸入jable網址:')
+    jjob = JableTVJob(urls, dest)
+    if jjob.is_url_vaildate():
+        jjob.start_download()
+        print('下載完成!')
+
+if __name__ == "__main__":
+    consoles_main("")
+
