@@ -13,6 +13,7 @@ import m3u8
 from Crypto.Cipher import AES
 from config import headers
 from crawler import prepareCrawl
+from encode import ffmpeg_encode
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
 from cover import get_cover
@@ -127,3 +128,7 @@ deleteMp4(folderPath)
 # In[11]:
 # get cover
 get_cover(html_file=htmlfile, folder_path=folderPath)
+
+# In[12]:
+# ffmpe encode
+ffmpeg_encode(folderPath, dirName)
