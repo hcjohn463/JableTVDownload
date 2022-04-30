@@ -67,6 +67,8 @@ class JableTVDownloadWindow(tk.Tk):
         self.btn_addlist.pack(side=tk.LEFT)
         self.btn_download = tk.Button(btn_frame,text='開始下載', command=self.on_start_download)
         self.btn_download.pack(side=tk.LEFT)
+        self.btn_download_all = tk.Button(btn_frame,text='全部下載', command=self.on_start_all_download)
+        self.btn_download_all.pack(side=tk.LEFT)
         self.btn_cancel = tk.Button(btn_frame,text='全部取消', command=self.on_cancel_all_download)
         self.btn_cancel.pack(side=tk.RIGHT)
 
@@ -147,6 +149,11 @@ class JableTVDownloadWindow(tk.Tk):
                 self.btn_download['text'] = "取消下載"
                 self.btn_download['command'] = self.on_cancel_download
 
+        if len(self.tree.selection()) > 1:
+            self.btn_download_all["state"] = tk.NORMAL
+        else:
+            self.btn_download_all["state"] = tk.DISABLED
+
         if self._download_list != [] or self._currentJob:
             self.btn_cancel["state"] = tk.NORMAL
         else:
@@ -167,8 +174,17 @@ class JableTVDownloadWindow(tk.Tk):
                 if urls[0] == self.urls:
                     self.tree.update_item_state(self.urls, "已取消")
                     self._download_list.remove(urls)
-
         self.toggle_download_button()
+
+    def on_start_all_download(self):
+        for it in self.tree.selection():
+            data = self.tree.item(it)
+            url_full = JableTVJob.get_urls_form(data['values'][0], shortform=False)
+            self._download_list.append([url_full, data['values'][2]])
+            self.tree.update_item_state(url_full, "等待中")
+        self.toggle_download_button()
+        if self._currentJob is None:
+            threading.Timer(0.5, self._on_timer_downloading).start()
 
     def on_start_download(self):
         self._cancel_all = False

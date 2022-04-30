@@ -52,7 +52,7 @@ class RedirectConsole(tk.Listbox):
 
 class ScrollTreeView(ttk.Treeview):
     """ ttk.Treeview with a vertical scroll bar """
-    _download_state_ = {'': 100, '已下載': 0, '下載中': 1, '等待中': 2, '已取消': 3, '未完成': 4, '網址錯誤': 99}
+    _download_state_ = {'': 100, '已下載': 0, '未完成': 1, '下載中': 2, '等待中': 3, '已取消': 4, '網址錯誤': 99}
 
     def __init__(self, master, **kwargs):
         _frame = tk.Frame(master)
@@ -83,7 +83,7 @@ class MyDownloadListView(ScrollTreeView):
         self.column(self._colnames[0], width=80, minwidth=40, stretch=False)
         self.column(self._colnames[1], stretch=True)
         self.column(self._colnames[2], width=80, minwidth=40, stretch=False)
-        self.column(self._colnames[3], width=44, minwidth=40, stretch=False)
+        self.column(self._colnames[3], width=64, minwidth=40, stretch=False)
 
         self.config(displaycolumns=[2, 0, 1, 3])
         self.bind("<Delete>", self._on_key_delete_event)
