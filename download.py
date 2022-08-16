@@ -19,6 +19,9 @@ def download(url):
   # 建立番號資料夾
   urlSplit = url.split('/')
   dirName = urlSplit[-2]
+  if os.path.exists(f'{dirName}/{dirName}.mp4'):
+    print('番號資料夾已存在, 跳過...')
+    return
   if not os.path.exists(dirName):
       os.makedirs(dirName)
   folderPath = os.path.join(os.getcwd(), dirName)
