@@ -43,7 +43,8 @@ class JableTVJob:
         if shortform: return uu
         return f"https://jable.tv/videos/{uu}/"
 
-    def __init__(self, url, savepath=""):
+    def __init__(self, url, savepath="", silence=False):
+        self.silence = silence
         self._tsList = []
         self._ci = None
         self._downloadList = []
@@ -79,9 +80,10 @@ class JableTVJob:
                 self._imageUrl = result[0].split('"')[-2]
                 result = re.search("https://.+m3u8", htmlfile.text)
                 self._m3u8url = result[0]
-                print("檔案名稱: " + self._targetName, flush=True)
-                print("儲存位置: " + self._dest_folder, flush=True)
-                print("檔案縮圖: " + self._imageUrl, flush=True)
+                if self.silence == False:
+                    print("檔案名稱: " + self._targetName, flush=True)
+                    print("儲存位置: " + self._dest_folder, flush=True)
+                    print("檔案縮圖: " + self._imageUrl, flush=True)
             else:
                 raise Exception(f"Bad url names: {url}")
         except Exception:
@@ -241,9 +243,11 @@ class JableTVJob:
             self._create_dest_folder()
             # 下載預覽圖
             response = requests.get(self._imageUrl, headers=headers, timeout=10)
-            if response.status_code == requests.codes.ok:
-                with open(self._get_image_savename(), 'ab') as fs:
-                    fs.write(response.content)
+            if response.status_code != requests.codes.ok:
+                return None
+            with open(self._get_image_savename(), 'ab') as fs:
+                fs.write(response.content)
+        return  self._get_image_savename();
 
     def start_download(self):
         self._cancel_job = False

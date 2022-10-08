@@ -31,7 +31,10 @@ class RedirectConsole(tk.Listbox):
                 else:
                     newline = self.get(self._cursor_y) + msgs2[2]
                 if newline != "":
-                    self.delete(self._cursor_y, tk.END)
+                    #self["state"] = tk.DISABLED
+                    #self.delete(self._cursor_y, tk.END)
+                    self.delete(self._cursor_y)
+                    #self["state"] = tk.NORMAL
                     self.insert(self._cursor_y, newline)
                     self.see(self._cursor_y)
                 if msgs1[1] != "\n": break
