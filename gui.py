@@ -11,6 +11,8 @@ from JableTVJob import JableTVJob
 import os
 import re
 
+from PIL import ImageTk, Image
+
 
 def gui_main(urls, dest):
     mainWnd = JableTVDownloadWindow(dest=dest, urls=urls)
@@ -34,11 +36,12 @@ class JableTVDownloadWindow(tk.Tk):
         self.clipboard_checker = threading.Thread(target=self.check_clipboard).start()
         self.clipborad_thread = None
         self.toggle_download_button()
+        self.loadthumbnail_thread = None
 
 
     def create_widgets(self, dest, urls):
         self.title('JableTV 下載器')
-        self.geometry('640x480')
+        self.geometry('1024x768')
 
         self.tree = MyDownloadListView(self)
         self.tree.pack(side="top", fill='both', expand=True, padx=4, pady=4)
@@ -46,34 +49,49 @@ class JableTVDownloadWindow(tk.Tk):
         self.tree.bind('<<TreeviewSelect>>', self.on_treeitem_selected)
 
         dest_frame = tk.Frame(self)
-        dest_frame.pack(side=tk.TOP)
-        dest_label = tk.Label(dest_frame,text='存放位置',width=10)
+        #        dest_frame["highlightbackground"] = "blue"
+        #        dest_frame["highlightthickness"] = 2
+        dest_frame.pack(side=tk.TOP, fill='x', padx=12)
+        dest_label = tk.Label(dest_frame, text='存放位置', width=10)
         dest_label.pack(side=tk.LEFT)
         self.dest_entry = tk.Entry(dest_frame, width=70)
-        self.dest_entry.pack(side=tk.LEFT,expand=True)
+        self.dest_entry.pack(side=tk.LEFT, fill='x', expand=True)
 
         url_frame = tk.Frame(self)
-        url_frame.pack(side=tk.TOP)
-        url_label = tk.Label(url_frame,text='下載網址',width=10)
-        url_label.pack(side=tk.LEFT)
-        self.url_entry = tk.Entry(url_frame,width=70)
-        self.url_entry.pack(side=tk.LEFT)
+        url_frame.pack(side=tk.TOP, fill='x', padx=12)
+        url_label = tk.Label(url_frame, text='下載網址', width=10)
+        url_label.pack(side=tk.LEFT, fill="both")
+        self.url_entry = tk.Entry(url_frame, width=70)
+        self.url_entry.pack(side=tk.LEFT, fill='x', expand=True)
 
-        btn_frame = tk.Frame(self)
-        btn_frame.pack(side=tk.TOP)
-        self.btn_importlist = tk.Button(btn_frame,text='導入文件', command=self.on_import_list)
-        self.btn_importlist.pack(side=tk.LEFT)
-        self.btn_addlist = tk.Button(btn_frame,text='加入清單', command=self.on_add_list)
-        self.btn_addlist.pack(side=tk.LEFT)
-        self.btn_download = tk.Button(btn_frame,text='開始下載', command=self.on_start_download)
-        self.btn_download.pack(side=tk.LEFT)
-        self.btn_download_all = tk.Button(btn_frame,text='全部下載', command=self.on_start_all_download)
-        self.btn_download_all.pack(side=tk.LEFT)
-        self.btn_cancel = tk.Button(btn_frame,text='全部取消', command=self.on_cancel_all_download)
-        self.btn_cancel.pack(side=tk.RIGHT)
+        btns_frame = tk.Frame(self)
+        btns_frame.pack(side=tk.TOP, fill='x', padx=18, pady=2)
+        btn_leftframe = tk.Frame(btns_frame)
+        btn_leftframe.pack(side=tk.LEFT, padx=18, pady=1)
+        btn_rightframe = tk.Frame(btns_frame)
+        btn_rightframe.pack(side=tk.LEFT, padx=18, pady=1)
+
+        self.btn_importlist = tk.Button(btn_leftframe, text='導入文件', command=self.on_import_list)
+        self.btn_importlist.pack(side=tk.LEFT, padx=2)
+        self.btn_addlist = tk.Button(btn_leftframe, text='加入清單', command=self.on_add_list)
+        self.btn_addlist.pack(side=tk.LEFT, padx=2)
+        self.btn_download = tk.Button(btn_leftframe, text='開始下載', command=self.on_start_download)
+        self.btn_download.pack(side=tk.LEFT, padx=2)
+        self.btn_download_all = tk.Button(btn_leftframe, text='全部下載', command=self.on_start_all_download)
+        self.btn_download_all.pack(side=tk.LEFT, padx=2)
+        self.btn_cancel = tk.Button(btn_leftframe, text='全部取消', command=self.on_cancel_all_download)
+        self.btn_cancel.pack(side=tk.RIGHT, padx=2)
+
+        self.btn_clearText = tk.Button(btn_rightframe, text="清除", command=self.on_clear_text)
+        self.btn_clearText.pack(side=tk.RIGHT, padx=2, ipadx=12)
 
         self.text = RedirectConsole(self)
-        self.text.pack(side="top", fill="both", expand=True, padx=4, pady=4)
+        self.text.pack(side=tk.LEFT, fill="both", expand=True, padx=8, pady=2)
+
+        self.thumbnail_label = tk.Label(self)#, width=360, height=270)
+        self.thumbnail_label.pack(side=tk.LEFT)
+
+        self.thumbnail = None
 
         self.dest = dest
         self.urls = urls
@@ -81,6 +99,26 @@ class JableTVDownloadWindow(tk.Tk):
         self.load_on_create()
         self.dest_entry.insert(tk.END, dest)
         self.url_entry.insert(tk.END, urls)
+
+    def _loadThumbnail(self):
+        jjob = JableTVJob(self.urls, self.dest, silence=True)
+        url = jjob.download_image()
+        if url is not None:
+            img = Image.open(url)
+            w = 360 / img.size[0]
+            h = 270 / img.size[1]
+            __sz = (360, (int)(img.size[1]*w) )
+            if w>h: __sz = ((int)(img.size[0]*h), 270)
+            self.thumbnail = ImageTk.PhotoImage(img.resize(__sz))
+            self.thumbnail_label.pack_forget()
+            self.thumbnail_label["image"] = self.thumbnail
+            self.thumbnail_label.pack(side=tk.LEFT)
+        self.loadthumbnail_thread = None
+
+    def showThumbnail(self):
+        if self.loadthumbnail_thread is None:
+            self.loadthumbnail_thread = threading.Timer(0.5, self._loadThumbnail)
+            self.loadthumbnail_thread.start()
 
     def on_treeitem_selected(self, event):
         for selected_item in self.tree.selection():
@@ -90,7 +128,9 @@ class JableTVDownloadWindow(tk.Tk):
             self.url_entry.delete(0, tk.END)
             url_full = JableTVJob.get_urls_form(item['values'][0], shortform=False)
             self.url_entry.insert(tk.END, url_full)
+            self._get_entry_values()
             self.toggle_download_button()
+            self.showThumbnail()
 
     def _do_clipboard_list(self):
         try:
@@ -285,6 +325,9 @@ class JableTVDownloadWindow(tk.Tk):
                 print("無有效的網址!!")
         except Exception:
             return
+
+    def on_clear_text(self):
+        self.text.clear_contents()
 
 if __name__ == "__main__":
     gui_main("", "download")
