@@ -1,5 +1,6 @@
 import os
 
+
 def deleteMp4(folderPath):
     files = os.listdir(folderPath)
     originFile = folderPath.split(os.path.sep)[-1] + '.mp4'

@@ -2,7 +2,6 @@ import argparse
 from bs4 import BeautifulSoup
 import random
 from urllib.request import Request, urlopen
-from config import headers
 import re
 
 
@@ -26,6 +25,3 @@ def av_recommand():
     h6_tags = soup.find_all('h6', class_='title')
     av_list = re.findall(r'https[^"]+', str(h6_tags))
     return random.choice(av_list)
-
-
-# print(av_recommand())

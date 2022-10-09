@@ -1,39 +1,30 @@
-# author: hcjohn463
-#!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-import requests
 import os
-import re
 import urllib.request
-import m3u8
-from Crypto.Cipher import AES
-from config import headers
-from crawler import prepareCrawl
-from merge import mergeMp4
-from delete import deleteM3u8, deleteMp4
-from cover import get_cover
-import time
+
 import cloudscraper
+import m3u8
+import requests
+from Crypto.Cipher import AES
+
 from args import *
-# In[2]:
+from config import headers
+from cover import get_cover
+from crawler import prepareCrawl
+from delete import deleteM3u8, deleteMp4
+from merge import mergeMp4
 
 parser = get_parser()
 args = parser.parse_args()
 
-if(len(args.url) != 0):
+if len(args.url) != 0:
     url = args.url
-elif(args.random == True):
+elif args.random:
     url = av_recommand()
 else:
     # 使用者輸入Jable網址
     url = input('輸入jable網址:')
-
-# In[3]:
-
 
 # 建立番號資料夾
 urlSplit = url.split('/')
@@ -41,8 +32,6 @@ dirName = urlSplit[-2]
 if not os.path.exists(dirName):
     os.makedirs(dirName)
 folderPath = os.path.join(os.getcwd(), dirName)
-# In[4]:
-
 
 # 得到 m3u8 網址
 htmlfile = cloudscraper.create_scraper(browser='firefox', delay=10).get(url)
@@ -53,14 +42,9 @@ m3u8urlList = m3u8url.split('/')
 m3u8urlList.pop(-1)
 downloadurl = '/'.join(m3u8urlList)
 
-
 # 儲存 m3u8 file 至資料夾
 m3u8file = os.path.join(folderPath, dirName + '.m3u8')
 urllib.request.urlretrieve(m3u8url, m3u8file)
-
-
-# In[5]:
-
 
 # 得到 m3u8 file裡的 URI和 IV
 m3u8obj = m3u8.load(m3u8file)
@@ -78,10 +62,6 @@ for seg in m3u8obj.segments:
     tsUrl = downloadurl + '/' + seg.uri
     tsList.append(tsUrl)
 
-
-# In[6]:
-
-
 # 有加密
 if m3u8uri:
     m3u8keyurl = downloadurl + '/' + m3u8uri  # 得到 key 的網址
@@ -96,34 +76,17 @@ if m3u8uri:
 else:
     ci = ''
 
-
-# In[7]:
-
-
 # 刪除m3u8 file
 deleteM3u8(folderPath)
-
-
-# In[8]:
-
 
 # 開始爬蟲並下載mp4片段至資料夾
 prepareCrawl(ci, folderPath, tsList)
 
-
-# In[9]:
-
-
 # 合成mp4
 mergeMp4(folderPath, tsList)
-
-
-# In[10]:
-
 
 # 刪除子mp4
 deleteMp4(folderPath)
 
-# In[11]:
 # get cover
 get_cover(html_file=htmlfile, folder_path=folderPath)
