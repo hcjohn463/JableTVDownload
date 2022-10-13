@@ -27,7 +27,7 @@ class RedirectConsole(tk.Listbox):
                 msgs2 = msgs1[0].rpartition("\r")
                 if msgs2[1] == '\r':
                     newline = msgs2[2]
-                    newline = newline.lstrip()
+                    #newline = newline.lstrip()
                 else:
                     newline = self.get(self._cursor_y) + msgs2[2]
                 if newline != "":
@@ -39,6 +39,7 @@ class RedirectConsole(tk.Listbox):
                     self.see(self._cursor_y)
                 if msgs1[1] != "\n": break
                 self._cursor_y += 1
+                self.see(self._cursor_y)
                 if msgs1[2] == "": break
                 msgs1 = msgs1[2].partition("\n")
             self.configure(state="disabled")
@@ -55,8 +56,6 @@ class RedirectConsole(tk.Listbox):
 
 class ScrollTreeView(ttk.Treeview):
     """ ttk.Treeview with a vertical scroll bar """
-    _download_state_ = {'': 100, '已下載': 0, '未完成': 1, '下載中': 2, '等待中': 3, '已取消': 4, '網址錯誤': 99}
-
     def __init__(self, master, **kwargs):
         _frame = tk.Frame(master)
         super().__init__(_frame, **kwargs)
@@ -73,6 +72,7 @@ class ScrollTreeView(ttk.Treeview):
 
 
 class MyDownloadListView(ScrollTreeView):
+    _download_state_ = {'': 100, '已下載': 0, '未完成': 1, '下載中': 2, '等待中': 3, '已取消': 4, '網址錯誤': 99}
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.list_modified = False
@@ -100,7 +100,7 @@ class MyDownloadListView(ScrollTreeView):
     def _sort_column(self, col, reverse: bool):
         l = [(self.set(k, col), k) for k in self.get_children('')]
         if col == '狀態':
-            l = sorted(l, key=lambda s: ScrollTreeView._download_state_.__getitem__(s[0]), reverse=reverse)
+            l = sorted(l, key=lambda s: MyDownloadListView._download_state_.__getitem__(s[0]), reverse=reverse)
         else:
             l = sorted(l, key=lambda s: s[0].lower(), reverse=reverse)
         for index, (val, k) in enumerate(l):

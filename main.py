@@ -10,8 +10,6 @@ from gui import *
     1      : GUI mode
     others : consoles mode   
     '''
-gui_mode = 1
-
 ''' Default folder to save the download files
     "" or None : same as the url's last stem,  ie:  "abc-001" for url = "https://jable.tv/videos/abc-001/"
     others : relative to the current folder, or an absolute path  
@@ -23,14 +21,15 @@ if __name__ == "__main__":
     url = ""
     parser = get_parser()
     args = parser.parse_args()
+
     if len(args.url) != 0:
         url = args.url
     elif args.random is True:
         url = av_recommand()
 
-    if gui_mode == 1:
-        gui_main(url, save_folder)
-    else:
+    if args.nogui:
         consoles_main(url, save_folder)
+    else:
+        gui_main(url, save_folder)
 
     sys.exit(0)

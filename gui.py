@@ -33,11 +33,11 @@ class JableTVDownloadWindow(tk.Tk):
         self.create_widgets(dest, urls)
         self._is_abort = False
         self._clp_text = ""
-        self.clipboard_checker = threading.Thread(target=self.check_clipboard).start()
         self.clipborad_thread = None
         self.toggle_download_button()
         self.loadthumbnail_thread = None
-
+        self.clipboard_checker = threading.Thread(target=self.check_clipboard)
+        self.clipboard_checker.start()
 
     def create_widgets(self, dest, urls):
         self.title('JableTV 下載器')
@@ -67,9 +67,9 @@ class JableTVDownloadWindow(tk.Tk):
         btns_frame = tk.Frame(self)
         btns_frame.pack(side=tk.TOP, fill='x', padx=18, pady=2)
         btn_leftframe = tk.Frame(btns_frame)
-        btn_leftframe.pack(side=tk.LEFT, padx=18, pady=1)
+        btn_leftframe.pack(side=tk.LEFT,  padx=18, pady=1)
         btn_rightframe = tk.Frame(btns_frame)
-        btn_rightframe.pack(side=tk.LEFT, padx=18, pady=1)
+        btn_rightframe.pack(side=tk.LEFT, fill="x", expand=True, padx=18, pady=1)
 
         self.btn_importlist = tk.Button(btn_leftframe, text='導入文件', command=self.on_import_list)
         self.btn_importlist.pack(side=tk.LEFT, padx=2)
@@ -82,14 +82,17 @@ class JableTVDownloadWindow(tk.Tk):
         self.btn_cancel = tk.Button(btn_leftframe, text='全部取消', command=self.on_cancel_all_download)
         self.btn_cancel.pack(side=tk.RIGHT, padx=2)
 
-        self.btn_clearText = tk.Button(btn_rightframe, text="清除", command=self.on_clear_text)
-        self.btn_clearText.pack(side=tk.RIGHT, padx=2, ipadx=12)
+        self.btn_clearText = tk.Button(btn_rightframe, text="清除訊息", command=self.on_clear_text)
+        self.btn_clearText.pack(side=tk.LEFT, padx=2)
+        self.bShowThumbnail = tkinter.BooleanVar()
+        self.bShowThumbnail.set(1)
+        self.chkbtn_thumbnail = ttk.Checkbutton(btn_rightframe, text="顯示縮圖",variable=self.bShowThumbnail, command=self.onEnableThumbnail)
+        self.chkbtn_thumbnail.pack(side=tk.RIGHT, padx=2)
 
         self.text = RedirectConsole(self)
         self.text.pack(side=tk.LEFT, fill="both", expand=True, padx=8, pady=2)
 
-        self.thumbnail_label = tk.Label(self)#, width=360, height=270)
-        self.thumbnail_label.pack(side=tk.LEFT)
+        self.label_thumbnail_image = tk.Label(self, compound="top", wraplength=360, width=360)
 
         self.thumbnail = None
 
@@ -101,24 +104,34 @@ class JableTVDownloadWindow(tk.Tk):
         self.url_entry.insert(tk.END, urls)
 
     def _loadThumbnail(self):
+        self.loadthumbnail_thread = None
+        self._get_entry_values()
         jjob = JableTVJob(self.urls, self.dest, silence=True)
         url = jjob.download_image()
-        if url is not None:
+        if url is not None and url != "":
             img = Image.open(url)
             w = 360 / img.size[0]
             h = 270 / img.size[1]
             __sz = (360, (int)(img.size[1]*w) )
             if w>h: __sz = ((int)(img.size[0]*h), 270)
             self.thumbnail = ImageTk.PhotoImage(img.resize(__sz))
-            self.thumbnail_label.pack_forget()
-            self.thumbnail_label["image"] = self.thumbnail
-            self.thumbnail_label.pack(side=tk.LEFT)
-        self.loadthumbnail_thread = None
+            self.label_thumbnail_image.pack_forget()
+            self.label_thumbnail_image["image"] = self.thumbnail
+            self.label_thumbnail_image["text"] = jjob.target_name()
+            self.label_thumbnail_image.pack(side=tk.LEFT)
 
     def showThumbnail(self):
-        if self.loadthumbnail_thread is None:
-            self.loadthumbnail_thread = threading.Timer(0.5, self._loadThumbnail)
-            self.loadthumbnail_thread.start()
+        if not self.bShowThumbnail.get():
+            self.label_thumbnail_image.pack_forget()
+        else:
+            if self.loadthumbnail_thread is None:
+                self.loadthumbnail_thread = threading.Timer(0.5, self._loadThumbnail)
+                self.loadthumbnail_thread.start()
+
+    def onEnableThumbnail(self):
+        self._get_entry_values()
+        if self.urls is not None and self.urls != "":
+            self.showThumbnail()
 
     def on_treeitem_selected(self, event):
         for selected_item in self.tree.selection():
@@ -130,7 +143,7 @@ class JableTVDownloadWindow(tk.Tk):
             self.url_entry.insert(tk.END, url_full)
             self._get_entry_values()
             self.toggle_download_button()
-            self.showThumbnail()
+            self.onEnableThumbnail()
 
     def _do_clipboard_list(self):
         try:
@@ -146,14 +159,11 @@ class JableTVDownloadWindow(tk.Tk):
         while not self._is_abort:
             try:
                 clp = self.clipboard_get()
-                if not type(clp) is type(self._clp_text) or\
-                    self._clp_text != clp:
+                if not type(clp) is type(self._clp_text) or self._clp_text != clp:
                     self._clp_text = clp
                     result = re.findall("https://jable\.tv/videos/.+?/", clp)
                     for str in result:
                         self._urls_list.append(str.strip())
-                        #self.text.clear_contents()
-                        #self._add_url_to_tree(str.strip(), self._import_dest)
                         if self._urls_list != [] and  not self.clipborad_thread:
                             self.clipborad_thread = threading.Timer(0.5, self._do_clipboard_list)
                             self.clipborad_thread.start()
@@ -328,6 +338,18 @@ class JableTVDownloadWindow(tk.Tk):
 
     def on_clear_text(self):
         self.text.clear_contents()
+
+    def movieLinks(url):
+        res = requests.get(url, headers=headers, timeout=10)
+        links = []
+        if res.status_code == 200:
+            content = res.content
+            soup = BeautifulSoup(content, 'html.parser')
+            a_tags = soup.select('div.img-box>a')
+            for a_tag in a_tags:
+                links.append(a_tag['href'])
+        print('獲取到 {0} 個影片'.format(len(links)))
+        return links
 
 if __name__ == "__main__":
     gui_main("", "download")

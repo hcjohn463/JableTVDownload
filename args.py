@@ -12,6 +12,8 @@ def get_parser():
                         help="Enter True for download random ")
     parser.add_argument("--url", type=str, default="",
                         help="Jable TV URL to download")
+    parser.add_argument("--nogui", type=bool, default=False,
+                        help="True for disable gui mode")
 
     return parser
 
