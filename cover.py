@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 def get_cover(html_file, folder_path):
   # get cover
-  soup = BeautifulSoup(html_file.text, "html.parser")
+  soup = BeautifulSoup(html_file, "html.parser")
   cover_name = f"{os.path.basename(folder_path)}.jpg"
   cover_path = os.path.join(folder_path, cover_name)
   for meta in soup.find_all("meta"):
