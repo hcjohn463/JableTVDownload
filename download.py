@@ -34,6 +34,7 @@ def download(url):
   result = re.search("https://.+m3u8", dr.page_source)
   print(f'result: {result}')
   m3u8url = result[0]
+  print(f'm3u8url: {m3u8url}')
 
   m3u8urlList = m3u8url.split('/')
   m3u8urlList.pop(-1)
@@ -89,4 +90,4 @@ def download(url):
   deleteMp4(folderPath)
 
   # get cover
-  get_cover(html_file=htmlfile, folder_path=folderPath)
+  get_cover(html_file=dr.page_source, folder_path=folderPath)
