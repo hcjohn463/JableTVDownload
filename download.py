@@ -13,6 +13,8 @@ from cover import get_cover
 import time
 import cloudscraper
 from args import *
+from bs4 import BeautifulSoup
+from selenium import webdriver
 
 def download(url):
   print('正在下載影片: ' + url)
@@ -26,8 +28,11 @@ def download(url):
       os.makedirs(dirName)
   folderPath = os.path.join(os.getcwd(), dirName)
   # 得到 m3u8 網址
-  htmlfile = cloudscraper.create_scraper(browser='firefox', delay=10).get(url)
-  result = re.search("https://.+m3u8", htmlfile.text)
+  # htmlfile = cloudscraper.create_scraper(browser='chrome', delay=10).get(url)
+  dr = webdriver.Chrome()
+  dr.get(url)
+  result = re.search("https://.+m3u8", dr.page_source)
+  print(f'result: {result}')
   m3u8url = result[0]
 
   m3u8urlList = m3u8url.split('/')
