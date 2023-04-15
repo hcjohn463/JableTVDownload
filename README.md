@@ -61,7 +61,7 @@ source jable/bin/activate. # MacOS
 ![](https://i.imgur.com/DKFrD7T.png)
 
 ### 更新日誌(Update log)
-
+ 🦅 2023/4/15 輸入演員鏈接，下載所有該演員相關的影片 v1.9
  🚗 2022/1/25 下載結束後抓封面 v1.8   
  🐶 2021/6/4 更改m3u8得到方法(正則表達式) v1.7  
  🌏 2021/5/28 更新代碼讓Unix系統(Mac,linux等)能使用 v1.6  
