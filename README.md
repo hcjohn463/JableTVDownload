@@ -15,6 +15,8 @@ source jable/bin/activate. # MacOS
 ### requirements
 `pip install -r requirements.txt`
 
+下載ChromeDriver至資料夾 [ChromeDriver]
+
 安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
 ### 執行程式(Execute)
@@ -43,6 +45,7 @@ source jable/bin/activate. # MacOS
 ### 轉檔完成(Finish encode)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/different.PNG)
 
+[ChromeDriver]:<https://chromedriver.chromium.org/downloads>
 [FFmpeg]:<https://www.ffmpeg.org/>  
 
 ### Argument parser
