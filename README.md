@@ -6,7 +6,7 @@
 
 直接下載到電腦看沒煩惱
 
-### 搭建虛擬環境
+### 1.搭建虛擬環境(Create Virtual Environment)
 
 ```
 python -m venv jable
@@ -14,7 +14,7 @@ jable/Scripts/activate
 ```
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
-### 行前準備
+### 2.下載所需套件、檔案(Download requirements files)
 `pip install -r requirements.txt`
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/requirements.PNG)  
@@ -25,22 +25,22 @@ jable/Scripts/activate
 
 安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
-### 執行程式(Execute)
+### 3.執行程式(Execute)
 `python main.py`
 
-### 輸入影片網址(Input video url)
+### 4.輸入影片網址(Input Video Url)
 `https://jable.tv/videos/ipx-486/`    
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download2.PNG)  
 
-### 等待下載(Wait download)  
+### 5.等待下載(Wait Download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
-### 完成(Finish)
+### 6.完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo.PNG)
 
 如果覺得好用 再麻煩給個星星好評 謝謝!!
 
-## #####選擇性使用(Optional use)#####
+## #####選擇性使用(Optional Use)#####
 
 ### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
 `cd ipx-486`  
@@ -48,7 +48,7 @@ jable/Scripts/activate
   
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ff.PNG)
 
-### 轉檔完成(Finish encode)
+### 轉檔完成(Finish Encode)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/different.PNG)
 
 [ChromeDriver]:<https://chromedriver.chromium.org/downloads>
