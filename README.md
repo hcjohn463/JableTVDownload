@@ -14,7 +14,7 @@ jable/Scripts/activate
 ```
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
-### 2.下載所需套件、檔案(Download requirements files)
+### 2.下載所需套件、檔案(Download Requirement Files)
 `pip install -r requirements.txt`
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/requirements.PNG)  
