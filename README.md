@@ -6,7 +6,7 @@
 
 直接下載到電腦看沒煩惱
 
-### 1.搭建虛擬環境(Create Virtual Environment)
+### 1.搭建並啟用虛擬環境(Activate Virtual Environment)
 
 ```
 python -m venv jable
