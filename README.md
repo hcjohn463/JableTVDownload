@@ -7,6 +7,11 @@
 直接下載到電腦看沒煩惱
 
 ### 搭建虛擬環境
+
+```
+python -m venv jable
+jable/Scripts/activate
+```
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
 ### 行前準備
