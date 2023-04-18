@@ -6,16 +6,17 @@
 
 直接下載到電腦看沒煩惱
 
-### vitual env
-```
-python3 -m venv jable
-source jable/bin/activate. # MacOS
-```
+### 搭建虛擬環境
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
-### requirements
+### 行前準備
 `pip install -r requirements.txt`
 
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/requirements.PNG)  
+
 下載ChromeDriver至資料夾 [ChromeDriver]
+
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
 
 安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
@@ -24,13 +25,13 @@ source jable/bin/activate. # MacOS
 
 ### 輸入影片網址(Input video url)
 `https://jable.tv/videos/ipx-486/`    
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/input.PNG)  
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download2.PNG)  
 
 ### 等待下載(Wait download)  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
 ### 完成(Finish)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/3.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo.PNG)
 
 如果覺得好用 再麻煩給個星星好評 謝謝!!
 
