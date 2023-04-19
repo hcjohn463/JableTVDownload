@@ -15,15 +15,16 @@ jable/Scripts/activate
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
 ### 2.下載所需套件、檔案(Download Requirement Files)
+a.
 `pip install -r requirements.txt`
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/requirements.PNG)  
-
+b.
 下載ChromeDriver至資料夾 [ChromeDriver]
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
-
-安裝 [FFmpeg] (用於轉檔。不安裝也可以，不過影片會有拖拉卡幀的狀況)
+c.
+安裝 [FFmpeg] (不安裝也可以看，不過影片會有拖拉卡幀的狀況)
 
 ### 3.執行程式(Execute)
 `python main.py`
