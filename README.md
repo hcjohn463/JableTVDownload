@@ -40,11 +40,12 @@ c.
 ### 5.等待下載(Wait Download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
+### 6.開始轉檔(Start Encoding) 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded.png)
 
-### 6.完成(Finish)
+### 7.完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
 
 ### 如果覺得好用 再麻煩給個星星好評 謝謝!!
