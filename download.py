@@ -100,3 +100,6 @@ def download(url):
 
   # get cover
   get_cover(html_file=dr.page_source, folder_path=folderPath)
+
+  # ffmpe encode
+  ffmpeg_encode(folderPath, dirName)
