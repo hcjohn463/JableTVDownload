@@ -40,7 +40,7 @@ jable/Scripts/activate
 
 ## #####選擇性使用(Optional Use)#####
 
-安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
+安裝 [FFmpeg] (想改善影片拖拉時間軸會卡幀情況發生看這)
 
 ### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
 `cd ipx-486`  
