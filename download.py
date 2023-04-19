@@ -15,6 +15,7 @@ import cloudscraper
 from args import *
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 def download(url):
   print('正在下載影片: ' + url)
@@ -29,7 +30,14 @@ def download(url):
   folderPath = os.path.join(os.getcwd(), dirName)
   # 得到 m3u8 網址
   # htmlfile = cloudscraper.create_scraper(browser='chrome', delay=10).get(url)
-  dr = webdriver.Chrome()
+  options = Options()
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--disable-extensions')
+  options.add_argument('--headless')
+  options.add_argument("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36")
+  dr = webdriver.Chrome(chrome_options=options)
+  #dr = webdriver.Chrome()
   dr.get(url)
   result = re.search("https://.+m3u8", dr.page_source)
   print(f'result: {result}')
