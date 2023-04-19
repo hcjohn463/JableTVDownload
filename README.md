@@ -35,12 +35,12 @@ jable/Scripts/activate
 ### 5.等待下載(Wait Download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded.png)
 
 ### 6.完成(Finish)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
 
 ### 如果覺得好用 再麻煩給個星星好評 謝謝!!
 ---
