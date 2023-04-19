@@ -15,13 +15,16 @@ jable/Scripts/activate
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/createVenv.PNG)  
 
 ### 2.下載所需套件、檔案(Download Requirement Files)
+a.
 `pip install -r requirements.txt`
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/requirements.PNG)  
-
+b.
 下載ChromeDriver至資料夾 [ChromeDriver]
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
+c.
+安裝 [FFmpeg] (不安裝也可以看，不過影片會有拖拉卡幀的狀況)
 
 ### 3.執行程式(Execute)
 `python main.py`
@@ -33,23 +36,15 @@ jable/Scripts/activate
 ### 5.等待下載(Wait Download)  
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
 
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
+
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded.png)
+
 ### 6.完成(Finish)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
 
-如果覺得好用 再麻煩給個星星好評 謝謝!!
-
-## #####選擇性使用(Optional Use)#####
-
-安裝 [FFmpeg] (想改善影片拖拉時間軸會卡幀情況發生看這)
-
-### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
-`cd ipx-486`  
-`ffmpeg -i ipx-486.mp4 -c:v libx264 -b:v 3M -threads 5 -preset superfast f_ipx-486.mp4`  
-  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ff.PNG)
-
-### 轉檔完成(Finish Encode)
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/different.PNG)
+### 如果覺得好用 再麻煩給個星星好評 謝謝!!
+---
 
 [ChromeDriver]:<https://chromedriver.chromium.org/downloads>
 [FFmpeg]:<https://www.ffmpeg.org/>  
@@ -70,6 +65,7 @@ jable/Scripts/activate
 ![](https://i.imgur.com/DKFrD7T.png)
 
 ### 更新日誌(Update log)
+ 🦕 2023/4/19 新增ffmpeg自動轉檔 v1.11   
  🏹 2023/4/19 兼容Ubuntu Server v1.10   
  🦅 2023/4/15 輸入演員鏈接，下載所有該演員相關的影片 v1.9   
  🚗 2022/1/25 下載結束後抓封面 v1.8   
