@@ -26,8 +26,6 @@ b.
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
 
 c.
-`ffmpeg`
-
 安裝 [FFmpeg] ，此畫面代表FFmpeg安裝成功 (不安裝也可以看，不過影片會有拖拉卡幀的狀況)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffmpeg.png)
