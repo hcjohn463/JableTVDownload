@@ -23,8 +23,6 @@ jable/Scripts/activate
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
 
-安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
-
 ### 3.執行程式(Execute)
 `python main.py`
 
@@ -41,6 +39,8 @@ jable/Scripts/activate
 如果覺得好用 再麻煩給個星星好評 謝謝!!
 
 ## #####選擇性使用(Optional Use)#####
+
+安裝 [FFmpeg] (未安裝也能下載 但影片拖拉時間軸會有卡幀情況發生)
 
 ### 使用FFmpeg轉檔優化 : 參數能自己調(Use FFmpeg encode) 
 `cd ipx-486`  
