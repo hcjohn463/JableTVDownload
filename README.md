@@ -38,8 +38,9 @@ c.
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download2.PNG)  
 
 ### 5.等待下載(Wait Download)  
-要轉檔優化輸入`y`，不要輸入`n`
-要用硬體加速轉檔輸入`y`，不要輸入`n`
+要轉檔優化輸入`y`，不要輸入`n`   
+要用GPU加速(Nvidia)轉檔輸入`y`，用CPU輸入`n`   
+
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encodeAction.PNG)
 
 ### 6.等待轉檔(Wait Encode) 
