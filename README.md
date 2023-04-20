@@ -38,7 +38,7 @@ c.
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download2.PNG)  
 
 ### 5.等待下載(Wait Download)  
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/finish.PNG)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encodeAction.PNG)
 
 ### 6.等待轉檔(Wait Encode) 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
