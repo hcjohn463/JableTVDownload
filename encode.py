@@ -5,7 +5,7 @@ def ffmpeg_encode(folder_path, file_name):
     if(action.lower() == "y"):
         os.chdir(folder_path)
         try:
-            action = input('要使用Nvidia硬體加速嗎?(y/n)')
+            action = input('要用GPU(Nvidia)加速轉檔嗎?(y/n)')
             if(action.lower() == "y"):
                 subprocess.call(['ffmpeg', '-i', f'{file_name}.mp4','-c:v', 'h264_nvenc', '-b:v', '10000K',
                                 '-threads', '5', f'f_{file_name}.mp4'])
