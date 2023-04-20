@@ -26,7 +26,7 @@ b.
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/chromeDriver.PNG)  
 
 c.
-安裝 [FFmpeg] 轉檔，此畫面代表FFmpeg安裝成功 (不安裝也可以看，不過影片會有拖拉卡幀的狀況)
+安裝 [FFmpeg] 用於轉檔，此畫面代表FFmpeg安裝成功 (不安裝也可以看，不過影片會有拖拉卡幀的狀況)
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/ffmpeg.png)
 
@@ -38,6 +38,8 @@ c.
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download2.PNG)  
 
 ### 5.等待下載(Wait Download)  
+要轉檔優化輸入`y`，不要輸入`n`
+要用硬體加速轉檔輸入`y`，不要輸入`n`
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encodeAction.PNG)
 
 ### 6.等待轉檔(Wait Encode) 
