@@ -19,6 +19,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def download(url):
+  encode = 0 #不轉檔
+  action = input('要轉檔嗎?(y/n)')
+  if action.lower() == 'y':
+    action = input('要用GPU(Nvidia)加速轉檔嗎?(y/n)')
+    if action.lower() == 'y':
+       encode = 1 #GPU轉檔
+    else:
+       encode = 2 #CPU轉檔
+
   print('正在下載影片: ' + url)
   # 建立番號資料夾
   urlSplit = url.split('/')
@@ -102,4 +111,4 @@ def download(url):
   get_cover(html_file=dr.page_source, folder_path=folderPath)
 
   # ffmpe encode
-  ffmpeg_encode(folderPath, dirName)
+  ffmpeg_encode(folderPath, dirName, encode)
