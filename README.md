@@ -41,7 +41,7 @@ c.
 要轉檔輸入`y`，不要輸入`n`   
 要用GPU加速(Nvidia)轉檔輸入`y`，用CPU輸入`n`   
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.png)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/download.PNG)
 
 ### 6.等待轉檔(Wait Encode) 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
