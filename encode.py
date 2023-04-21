@@ -1,6 +1,6 @@
 import os
 import subprocess
-def ffmpeg_encode(folder_path, file_name, action):
+def ffmpegEncode(folder_path, file_name, action):
     if action == 0: #不轉檔
         return
     elif action == 1: #GPU轉檔

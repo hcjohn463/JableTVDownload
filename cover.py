@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 
 
-def get_cover(html_file, folder_path):
+def getCover(html_file, folder_path):
   # get cover
   soup = BeautifulSoup(html_file, "html.parser")
   cover_name = f"{os.path.basename(folder_path)}.jpg"

@@ -9,12 +9,9 @@ from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
-from cover import get_cover
-from encode import ffmpeg_encode
-import time
-import cloudscraper
+from cover import getCover
+from encode import ffmpegEncode
 from args import *
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -38,8 +35,8 @@ def download(url):
   if not os.path.exists(dirName):
       os.makedirs(dirName)
   folderPath = os.path.join(os.getcwd(), dirName)
-  # 得到 m3u8 網址
-  # htmlfile = cloudscraper.create_scraper(browser='chrome', delay=10).get(url)
+  
+  #配置Selenium參數
   options = Options()
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-dev-shm-usage')
@@ -47,13 +44,13 @@ def download(url):
   options.add_argument('--headless')
   options.add_argument("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36")
   dr = webdriver.Chrome(chrome_options=options)
-  #dr = webdriver.Chrome()
   dr.get(url)
   result = re.search("https://.+m3u8", dr.page_source)
   print(f'result: {result}')
   m3u8url = result[0]
   print(f'm3u8url: {m3u8url}')
 
+  # 得到 m3u8 網址
   m3u8urlList = m3u8url.split('/')
   m3u8urlList.pop(-1)
   downloadurl = '/'.join(m3u8urlList)
@@ -108,7 +105,7 @@ def download(url):
   deleteMp4(folderPath)
 
   # get cover
-  get_cover(html_file=dr.page_source, folder_path=folderPath)
+  getCover(html_file=dr.page_source, folder_path=folderPath)
 
   # ffmpe encode
-  ffmpeg_encode(folderPath, dirName, encode)
+  ffmpegEncode(folderPath, dirName, encode)

@@ -1,20 +1,6 @@
 # author: hcjohn463
 #!/usr/bin/env python
 # coding: utf-8
-
-import requests
-import os
-import re
-import urllib.request
-import m3u8
-from Crypto.Cipher import AES
-from config import headers
-from crawler import prepareCrawl
-from merge import mergeMp4
-from delete import deleteM3u8, deleteMp4
-from cover import get_cover
-import time
-import cloudscraper
 from args import *
 from download import download
 from movies import movieLinks
