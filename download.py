@@ -55,7 +55,6 @@ def download(url):
   m3u8urlList.pop(-1)
   downloadurl = '/'.join(m3u8urlList)
 
-
   # 儲存 m3u8 file 至資料夾
   m3u8file = os.path.join(folderPath, dirName + '.m3u8')
   urllib.request.urlretrieve(m3u8url, m3u8file)
@@ -92,20 +91,17 @@ def download(url):
   # 刪除m3u8 file
   deleteM3u8(folderPath)
 
-
   # 開始爬蟲並下載mp4片段至資料夾
   prepareCrawl(ci, folderPath, tsList)
-
 
   # 合成mp4
   mergeMp4(folderPath, tsList)
 
-
   # 刪除子mp4
   deleteMp4(folderPath)
 
-  # get cover
+  # 取得封面
   getCover(html_file=dr.page_source, folder_path=folderPath)
 
-  # ffmpe encode
+  # 轉檔
   ffmpegEncode(folderPath, dirName, encode)
