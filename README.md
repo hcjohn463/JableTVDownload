@@ -72,6 +72,10 @@ c.
 
 ![](https://i.imgur.com/DKFrD7T.png)
 
+在 cmd line 指定 ffmpeg 自動轉檔 (預設關閉，可選: cpu, nv-gpu)
+
+    $ python main.py --url https://xxx.yyy/videos/abcd-123/ --encode cpu
+
 ### 更新日誌(Update log)
  🦕 2023/4/19 新增ffmpeg自動轉檔 v1.11   
  🏹 2023/4/19 兼容Ubuntu Server v1.10   
