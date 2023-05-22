@@ -5,6 +5,7 @@ from urllib.request import Request, urlopen
 from config import headers
 import re
 
+encode_choices = ['none', 'cpu', 'nv-gpu', ]
 
 def get_parser():
     parser = argparse.ArgumentParser(description="Jable TV Downloader")
@@ -15,6 +16,12 @@ def get_parser():
     parser.add_argument("--all-urls", type=str, default="",
                         help="Jable URL contains multiple avs")
     
+    parser.add_argument("--encode", type=str, choices=encode_choices,
+                        default='none', help="Choose encode accelerator (default: %(default)s): "
+                                           "none: no re-encoding; "
+                                           "cpu: use CPU to encode; "
+                                           "nv-gpu: use nvidia GPU to encode")
+
     return parser
 
 
