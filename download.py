@@ -10,11 +10,17 @@ from crawler import prepareCrawl
 from merge import mergeMp4
 from delete import deleteM3u8, deleteMp4
 from cover import getCover
+from encode import ffmpegEncode
 from args import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def download(url):
+  encode = 0 #不轉檔
+  action = input('要轉檔嗎?(y/n)')
+  if action.lower() == 'y':
+       encode = 2 #CPU轉檔
+
   print('正在下載影片: ' + url)
   # 建立番號資料夾
   urlSplit = url.split('/')
@@ -93,4 +99,5 @@ def download(url):
   # 取得封面
   getCover(html_file=dr.page_source, folder_path=folderPath)
 
-  return folderPath, dirName
+  # 轉檔
+  ffmpegEncode(folderPath, dirName, encode)
