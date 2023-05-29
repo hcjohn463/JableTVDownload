@@ -39,14 +39,13 @@ c.
 
 ### 5.等待下載(Wait Download)  
 要轉檔輸入`y`，不要輸入`n`   
-要用GPU加速(Nvidia)轉檔輸入`y`，用CPU輸入`n`   
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding2.PNG)
 
 ### 6.等待轉檔(Wait Encode) 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded.png)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded2.png)
 
 ### 7.完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
@@ -72,11 +71,8 @@ c.
 
 ![](https://i.imgur.com/DKFrD7T.png)
 
-在 cmd line 指定 ffmpeg 自動轉檔 (預設關閉，可選: cpu, nv-gpu)
-
-    $ python main.py --url https://xxx.yyy/videos/abcd-123/ --encode cpu
-
 ### 更新日誌(Update log)
+ 🦞 2023/5/29 增加轉檔速度 v1.12   
  🦕 2023/4/19 新增ffmpeg自動轉檔 v1.11   
  🏹 2023/4/19 兼容Ubuntu Server v1.10   
  🦅 2023/4/15 輸入演員鏈接，下載所有該演員相關的影片 v1.9   
