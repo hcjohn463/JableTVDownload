@@ -45,7 +45,7 @@ c.
 ### 6.等待轉檔(Wait Encode) 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoding.png)
 
-![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded2.png)
+![image](https://github.com/hcjohn463/JableDownload/blob/main/img/encoded2.PNG)
 
 ### 7.完成(Finish)
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
