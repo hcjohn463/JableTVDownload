@@ -47,7 +47,8 @@ def download(url):
   dr.get(url)
   result = re.search("https://.+m3u8", dr.page_source)
   print(f'result: {result}')
-  m3u8url = result[0]
+  _elements = result[0].split('"')
+  m3u8url = _elements[-1]
   print(f'm3u8url: {m3u8url}')
 
   # 得到 m3u8 網址
