@@ -6,6 +6,11 @@
 
 直接下載到電腦看沒煩惱
 
+## 懶人包 for Windows 使用者
+
+1. 請自行安裝 ffmpeg，裝完之後執行 INIT.bat 將會自動建置其餘環境。
+2. 若收到可以執行 RUN.bat 之訊息，執行 RUN.bat 即可使用此神器。
+
 ### 1.搭建並啟用虛擬環境(Activate Virtual Environment)
 
 ```
