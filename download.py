@@ -17,13 +17,15 @@ from selenium.webdriver.chrome.options import Options
 
 def download(url):
   encode = 0 #不轉檔
-  action = input('要轉檔嗎?(y/n)')
+  action = input('要轉檔嗎?[y/n]')
   if action.lower() == 'y':
-    action = input('要用GPU(Nvidia)加速轉檔嗎?(y/n)')
-    if action.lower() == 'y':
-       encode = 1 #GPU轉檔
+    action = input('選擇轉檔方案[1:僅轉換格式(默認,推薦) 2:NVIDIA GPU 轉檔 3:CPU 轉檔]')
+    if action == '2':
+       encode = 2 #GPU轉檔
+    elif action == '3':
+       encode = 3 #CPU轉檔
     else:
-       encode = 2 #CPU轉檔
+       encode = 1 #快速無損轉檔
 
   print('正在下載影片: ' + url)
   # 建立番號資料夾
