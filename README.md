@@ -71,12 +71,6 @@ python main.py
 
 ![image](https://github.com/hcjohn463/JableDownload/blob/main/img/demo2.png)
 
-### 🚀 合成與轉檔優化 (v2.0+)
-
-- **高效合成**：不再使用 Python 進行兩次讀寫，直接利用 FFmpeg `concat` demuxer 一次完成「片段合併」與「標準化轉檔」。
-- **快速啟動**：移除慢速的幀數掃描，實現秒速啟動合成任務。
-- **標準輸出**：自動套用 `-c copy`、`aac_adtstoasc` 與 `+faststart`，確保影片在所有播放器皆能流暢播放。
-
 ### 如果覺得好用 再麻煩給個星星好評 謝謝!!
 
 ---
