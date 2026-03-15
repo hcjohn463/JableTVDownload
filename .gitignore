@@ -1,7 +1,25 @@
+# Python
 *.pyc
-*.mp4
-*.DS_store
-*.jpg
-*.m3u8
-chromedriver*
+*.pyo
+__pycache__/
+
+# 虛擬環境
 /jable
+venv/
+env/
+
+# 影片與暫存檔
+*.mp4
+*.ts
+*.m3u8
+*.jpg
+
+# macOS
+*.DS_store
+.DS_Store
+
+# ChromeDriver（自動下載，不需 commit）
+chromedriver*
+
+# 下載資料夾（影片可能很大）
+downloads/

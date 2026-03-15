@@ -1,0 +1,32 @@
+# Git 相關
+.git
+.gitignore
+
+# Python 快取
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# 虛擬環境（不要打包進 image）
+jable/
+venv/
+env/
+
+# 下載的影片（可能很大）
+downloads/
+*.mp4
+*.ts
+*.m3u8
+
+# 開發工具
+.vscode/
+.idea/
+
+# Windows 批次檔（容器內用不到）
+*.bat
+
+# Kubernetes manifests（不需打包進 image）
+k8s/

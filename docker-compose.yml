@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # ---- 主下載服務 ----
+  downloader:
+    build: .
+    image: jable-downloader:latest
+    container_name: jable_downloader
+    environment:
+      - URL=${URL:-}          # 透過環境變數傳入影片網址
+    volumes:
+      - ./downloads:/downloads  # 本機 downloads 資料夾 ←→ 容器內 /downloads
+    stdin_open: true            # 保持 stdin 開啟（互動模式）
+    tty: true
+
+  # ---- (可選) Redis 任務佇列 ----
+  # 未來擴充成多任務排隊下載時使用
+  redis:
+    image: redis:7-alpine
+    container_name: jable_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:

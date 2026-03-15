@@ -1,0 +1,54 @@
+# ============================================================
+# Kubernetes Job
+# 用途：每次下載任務就建立一個 Job，跑完自動結束
+# 這是最適合「批次下載」場景的 K8s 資源類型
+# ============================================================
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jable-download-job
+  namespace: default
+  labels:
+    app: jable-downloader
+spec:
+  # ttlSecondsAfterFinished: Job 完成後 300 秒自動清除
+  ttlSecondsAfterFinished: 300
+  template:
+    metadata:
+      labels:
+        app: jable-downloader
+    spec:
+      restartPolicy: OnFailure   # 失敗時重試，成功後不重啟
+      containers:
+        - name: downloader
+          image: jable-downloader:latest
+          imagePullPolicy: IfNotPresent  # 本地測試用，不強制從 Registry 拉取
+          env:
+            # 傳入目標影片網址
+            - name: URL
+              value: "https://jable.tv/videos/ipx-486/"  # ← 修改這裡
+            # 從 ConfigMap 取得設定
+            - name: CHROME_BIN
+              valueFrom:
+                configMapKeyRef:
+                  name: jable-config
+                  key: CHROME_BIN
+            - name: CHROMEDRIVER_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: jable-config
+                  key: CHROMEDRIVER_PATH
+          volumeMounts:
+            - name: downloads-storage
+              mountPath: /downloads  # 容器內的下載路徑
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+      volumes:
+        - name: downloads-storage
+          persistentVolumeClaim:
+            claimName: jable-downloads-pvc  # 掛載 PVC

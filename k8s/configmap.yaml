@@ -1,0 +1,15 @@
+# ============================================================
+# ConfigMap
+# 用途：集中管理設定值（不寫死在程式或 Job 裡）
+# ============================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jable-config
+  namespace: default
+data:
+  # 預設下載網址（可在 Job 中被 env 覆蓋）
+  DEFAULT_URL: "https://jable.tv/videos/ipx-486/"
+  # Chrome 相關設定
+  CHROME_BIN: "/usr/bin/chromium"
+  CHROMEDRIVER_PATH: "/usr/bin/chromedriver"

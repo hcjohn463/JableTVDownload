@@ -4,28 +4,17 @@ import os
 import re
 import urllib.request
 import m3u8
-from Crypto.Cipher import AES
 from config import headers
 from crawler import prepareCrawl
 from merge import mergeMp4
+from encode import ffmpegEncode
 from delete import deleteM3u8, deleteMp4
 from cover import getCover
-from encode import ffmpegEncode
 from args import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def download(url):
-  encode = 0 #不轉檔
-  action = input('要轉檔嗎?[y/n]')
-  if action.lower() == 'y':
-    action = input('選擇轉檔方案[1:僅轉換格式(默認,推薦) 2:NVIDIA GPU 轉檔 3:CPU 轉檔]')
-    if action == '2':
-       encode = 2 #GPU轉檔
-    elif action == '3':
-       encode = 3 #CPU轉檔
-    else:
-       encode = 1 #快速無損轉檔
 
   print('正在下載影片: ' + url)
   # 建立番號資料夾
@@ -79,31 +68,29 @@ def download(url):
 
   # 有加密
   if m3u8uri:
-      m3u8keyurl = downloadurl + '/' + m3u8uri  # 得到 key 的網址
-      # 得到 key的內容
+      m3u8keyurl = downloadurl + '/' + m3u8uri
       response = requests.get(m3u8keyurl, headers=headers, timeout=10)
       contentKey = response.content
-
-      vt = m3u8iv.replace("0x", "")[:16].encode()  # IV取前16位
-
-      ci = AES.new(contentKey, AES.MODE_CBC, vt)  # 建構解碼器
+      vt = m3u8iv.replace("0x", "")[:16].encode()  # IV 取前 16 位
+      # ✅ 改存 dict，讓每個執行緒自行建立 AES cipher（避免 Race Condition）
+      ci_params = {'key': contentKey, 'iv': vt}
   else:
-      ci = ''
+      ci_params = None
 
   # 刪除m3u8 file
   deleteM3u8(folderPath)
 
   # 開始爬蟲並下載mp4片段至資料夾
-  prepareCrawl(ci, folderPath, tsList)
+  prepareCrawl(ci_params, folderPath, tsList)
 
-  # 合成mp4
+  # 合成 mp4（Python 二進位串接）
   mergeMp4(folderPath, tsList)
+
+  # 轉檔：-c copy + faststart，讓播放器可邊下載邊播
+  ffmpegEncode(folderPath, dirName, 1)
 
   # 刪除子mp4
   deleteMp4(folderPath)
 
   # 取得封面
   getCover(html_file=dr.page_source, folder_path=folderPath)
-
-  # 轉檔
-  ffmpegEncode(folderPath, dirName, encode)
