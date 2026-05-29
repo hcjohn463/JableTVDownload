@@ -3,11 +3,12 @@ import os
 from bs4 import BeautifulSoup
 
 
-def getCover(html_file, folder_path):
+def getCover(html_file, folder_path, proxy_url=None):
   # get cover
   soup = BeautifulSoup(html_file, "html.parser")
   cover_name = f"{os.path.basename(folder_path)}.jpg"
   cover_path = os.path.join(folder_path, cover_name)
+  proxies = {'http': proxy_url, 'https': proxy_url} if proxy_url else None
   for meta in soup.find_all("meta"):
       meta_content = meta.get("content")
       if not meta_content:
@@ -15,7 +16,7 @@ def getCover(html_file, folder_path):
       if "preview.jpg" not in meta_content:
           continue
       try:
-          r = requests.get(meta_content)
+          r = requests.get(meta_content, proxies=proxies)
           with open(cover_path, "wb") as cover_fh:
               r.raw.decode_content = True
               for chunk in r.iter_content(chunk_size=1024):

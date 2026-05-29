@@ -14,13 +14,19 @@ def get_parser():
                         help="Jable TV URL to download")
     parser.add_argument("--all-urls", type=str, default="",
                         help="Jable URL contains multiple avs")
+    parser.add_argument("--proxy", type=str, default="",
+                        help="HTTP proxy URL (e.g., http://proxy.example.com:8080)")
     
     return parser
 
 
-def av_recommand():
+def av_recommand(proxy_url=None):
     headers = {'User-Agent': 'Mozilla/5.0'}
     url = 'https://jable.tv/'
+    if proxy_url:
+        proxy_handler = urllib.request.ProxyHandler({'http': proxy_url, 'https': proxy_url})
+        opener = urllib.request.build_opener(proxy_handler)
+        urllib.request.install_opener(opener)
     request = Request(url, headers=headers)
     web_content = urlopen(request).read()
     # 得到繞過轉址後的 html

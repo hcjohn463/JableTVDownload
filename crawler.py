@@ -20,7 +20,7 @@ def scrape(ci_params, folderPath, pbar, lock, session, urls):
 
     # 如果檔案已存在，進度條不重複更新（因為 startCrawl 已過濾）
     try:
-        response = session.get(urls, headers=headers, timeout=30)
+        response = session.get(urls, headers=headers, timeout=30, proxies=session.proxies)
         if response.status_code == 200:
             content_ts = response.content
             if ci_params:
@@ -39,17 +39,18 @@ def scrape(ci_params, folderPath, pbar, lock, session, urls):
     return False
 
 
-def measureSpeed(tsList, sample_count=3):
+def measureSpeed(tsList, sample_count=3, proxy_url=None):
     """並行測速，減少啟動延遲"""
     sample = tsList[:sample_count]
     times = []
     sizes = []
+    proxies = {'http': proxy_url, 'https': proxy_url} if proxy_url else None
 
     def _fetch(url):
         t0 = time.time()
         try:
             with requests.Session() as s:
-                response = s.get(url, headers=headers, timeout=15)
+                response = s.get(url, headers=headers, timeout=15, proxies=proxies)
             size_kb = len(response.content) / 1024
             return time.time() - t0, size_kb
         except Exception:
@@ -66,11 +67,11 @@ def measureSpeed(tsList, sample_count=3):
     return avg_sec, avg_speed_kb
 
 
-def prepareCrawl(ci_params, folderPath, tsList):
+def prepareCrawl(ci_params, folderPath, tsList, proxy_url=None):
     downloadList = copy.deepcopy(tsList)
     total = len(downloadList)
 
-    avg_sec_per_ts, avg_speed_kb = measureSpeed(tsList)
+    avg_sec_per_ts, avg_speed_kb = measureSpeed(tsList, proxy_url=proxy_url)
     # 提高並發：上限 32、下限 8，公式放寬以善用頻寬
     workers = min(32, max(8, int(avg_speed_kb / 200)))
     print(f'開始下載 {total} 個片段（使用 {workers} 個執行緒）')
@@ -81,7 +82,7 @@ def prepareCrawl(ci_params, folderPath, tsList):
     print(f'預計等待時間: {est_m} 分 {est_s} 秒（依據您的實際網速估算）')
 
     start_time = time.time()
-    startCrawl(ci_params, folderPath, downloadList, total, workers)
+    startCrawl(ci_params, folderPath, downloadList, total, workers, proxy_url)
     end_time = time.time()
 
     actual_sec = end_time - start_time
@@ -90,11 +91,13 @@ def prepareCrawl(ci_params, folderPath, tsList):
     print(f'\n花費 {act_m} 分 {act_s} 秒 爬取完成！')
 
 
-def startCrawl(ci_params, folderPath, downloadList, total, workers):
+def startCrawl(ci_params, folderPath, downloadList, total, workers, proxy_url=None):
     lock = threading.Lock()
     round_num = 0
     # 連線池：同一 host 複用 TCP，減少握手指數
     with requests.Session() as session:
+        if proxy_url:
+            session.proxies = {'http': proxy_url, 'https': proxy_url}
         _run_crawl(ci_params, folderPath, downloadList, total, workers, lock, session)
 
 
